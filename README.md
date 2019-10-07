@@ -1,6 +1,6 @@
 # Unity Clean Code
 
-This repository is dedicated to teach Unity developers of different backgrounds and programming skills to create cleaner code (which in most cases is also more maintainable and even faster!). If you have any suggestions or found any errors below, be sure to submit an Issue or a Pull Request.
+This repository is dedicated to teach Unity developers of different backgrounds and programming skill levels to create cleaner code, which in most cases is also more maintainable and sometimes even faster! If you have any suggestions or found any errors below, be sure to submit an Issue or a Pull Request.
 
 ## The Basics
 If you're reading this guide, you probably have a general understanding of what C# is, how to write (at least) some simple scripts in Unity and what not. However, I often see programmers struggle to truly understand the first principles they ever see when creating a new script. Let's take a look at it:
@@ -57,7 +57,23 @@ Starting at the very top (after public class MyCustomScript), we define what cla
 
 One common mistake to begginers is thinking that everything has to be a MonoBehaviour or inherit from something is. That is very far from the true, and actually a bad practice. For example, if you have a concept or abstraction that only handles data, consider making it a class that doesn't inherit from another class.
 
-## Identatation
+## Identation
+
+At first glance, identation is a simple topic: managing *spaces* inside your code. It is what makes your code more readable by separating different words or symbols with a space, tab, or new line. Understanding the importance of a code with the correct identation is often hard to developers who are new to programming, and the best way I ever found to change that was to show a piece of code with really bad identations. Let's take our script template to a new level (of uglyness):
+
+```csharp
+using UnityEngine;   using System.Collections;
+public class MyCustomScript    :MonoBehaviour{
+//Use this for initialization
+void Start() {
+}
+    void Update ( ) { } 
+}
+```
+
+How hard it is for you to read the code above? If you're used to programming in Unity maybe not very much, but it is already more time-consuming to understand what this script does and where each part of the could should be. If we took our approach to a real script, with 50 or 100 lines or code, readability would be absolutely awful.
+
+Many programming languages (C# included) have suggested guidelines or rules on how to properly ident your code, but truly learning it is not an easy task for most people. Luckily for us, there is a tool that will makes this process much easier: auto-formatting. If you're not sure you can handle identation by yourself, let the computer do the job for you and learn it by example. As you're probably using Visual Studio to code, my suggestion is to install the '*Productivity Power Tools*' plugin for Visual Studio and have the "Format document on save" option enabled. If you don't (or can't) install it, you can always use the "*Ctrl+K, Ctrl+D*" shortcut to format the currently opened script.
 
 ## Variables
 
@@ -76,4 +92,4 @@ One common mistake to begginers is thinking that everything has to be a MonoBeha
 ## References
 - "*Clean Code: A Handbook of Agile Software Craftsmanship*" by Robert C. Martin
 - "*Game Programming Patterns*" by Robert Nystrom
-- C# Documentation
+- C# Documentation by Microsoft
