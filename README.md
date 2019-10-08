@@ -4,6 +4,8 @@
 
 This repository is dedicated to teach Unity developers of different backgrounds and programming skill levels to create cleaner code, which in most cases is also more maintainable and sometimes even faster! If you have any suggestions or found any errors below, be sure to submit an Issue or a Pull Request.
 
+This guide will not cover everything there is to learn about clean code for Unity, but only the most important bits in a concise manner. If you want to learn more, I personally suggest reading the [C# programming guide]([https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/)) when in doubt about a specific C# feature, and/or the book "*Clean Code: A Handbook of Agile Software Craftsmanship*" by Robert C. Martin for a broader understanding of the topic.
+
 - [The Basics](#the-basics)
 - [Identation](#identation)
 - [Variables](#variables)
