@@ -1,5 +1,3 @@
-
-
 # Unity Clean Code
 
 This repository is dedicated to teach Unity developers of different backgrounds and programming skill levels to create cleaner code, which in most cases is also more maintainable and sometimes even faster! If you have any suggestions or found any errors below, be sure to submit an Issue or a Pull Request.
@@ -10,7 +8,7 @@ This guide will not cover everything there is to learn about clean code for Unit
 - [Identation](#identation)
 - [Variables](#variables)
 - [Methods](#methods)
-- [Statements (if, for, etc.)](#statements)
+- [Statements](#statements)
 - [Namespaces](#namespaces)
 - [Comments](#comments)
 - [Automated Tests](#automated-tests)
@@ -250,6 +248,91 @@ public void DoSomething()
 ```
 
 ## Statements
+
+Statements, as defined by Microsoft, are the "actions that a program takes", like declaring variables, calling methods, and looping through collections. We can divide statements into two categories: single-line, and multi-line. 
+
+```csharp
+private void DoSomething()
+{
+	// Single-line statement. In this case, declaring and initializing a variable;
+	var randomNumbers = new int[3];
+
+	// Multi-line statement. In this case, looping through 'randomNumbers'
+	foreach (int number in randomNumbers)
+	{
+		DoSomethingElse(number);
+	}
+}
+```
+
+For single-line statements there's not much we can actually talk about aside from keeping every statement in a separate line, having lines of code that are not too long, and other small tips. But there's one exception: line breaks. Use them when having to divide a long statement seems awkward or troublesome.
+
+```csharp
+// Do
+
+Debug.Log("This is just an example log that will print a long text with the values of the script: "
+	+ playerName + " " + playerHealth);
+
+string logMessageForPlayersInformation = 
+	PlayerManager.GetPlayerInformation(GetPlayerIndex("Player1")) +
+	PlayerManager.GetPlayerInformation(GetPlayerIndex("Player2"));
+Debug.Log(logMessageForPlayersInformation);
+
+// Do NOT
+
+// Too long
+Debug.Log("This is just an example log that will print a long text with the values of the script: " + playerName + " " + playerHealth); 
+
+string logMessageForPlayersInformation = 
+	PlayerManager.GetPlayerInformation(
+		GetPlayerIndex("Player1")) +
+	PlayerManager.GetPlayerInformation(
+		GetPlayerIndex("Player2"));
+Debug.Log(logMessageForPlayersInformation);
+```
+
+The complexity actually steps in when it comes to multi-line statements. When you decide to create blocks of code inside of another block, your script will face a problem similar to the issue presented above. Take a look a this example:
+
+```csharp
+var someValue = 100;
+var myValues = new int[10, 5]
+for (int i = 0; i < 10; i++)
+{
+	for (int j = 0; j < 5; j++)
+	{
+		if (i >= 1)
+		{
+			someValue--;
+		}
+		else
+		{
+			while (someValue > 50)
+			{
+				someValue -= 10;
+			}
+		}
+		myValues[i, j] = someValue;
+	}
+}
+```
+
+The code above is not meant to do something useful in particular, but if you were given the task to understand what this algorithm does, that would be a hard job. The amount of complexity added to the code because of these **nested** statements make their readability and maintainablity really low. And trust me, I've seen worse examples on pieces of code that actually shipped to a real game. As a general rule of thumb, keep your methods with at maximum of one multi-line statement nested inside another multi-line statement. If possible, no nesting or no multi-line statements at all is desirable.
+
+```csharp
+// Goal
+var someValue = 100;
+var myValues = new int[10, 5]
+for (int i = 0; i < 10; i++)
+{
+	for (int j = 0; j < 5; j++)
+	{
+		DoSomething(someValue, i, j);
+	}
+}
+
+// Ultimate Goal
+int[] myValues = CalculateValueMatrix(100, 10, 5);
+```
 
 ## Namespaces
 
