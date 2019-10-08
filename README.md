@@ -316,7 +316,7 @@ for (int i = 0; i < 10; i++)
 }
 ```
 
-The code above is not meant to do something useful in particular, but if you were given the task to understand what this algorithm does, that would be a hard job. The amount of complexity added to the code because of these **nested** statements make their readability and maintainablity really low. And trust me, I've seen worse examples on pieces of code that actually shipped to a real game. As a general rule of thumb, keep your methods with at maximum of one multi-line statement nested inside another multi-line statement. If possible, no nesting or no multi-line statements at all is desirable.
+The code above is not meant to do something useful in particular, but if you were given the task to understand what this algorithm does, that would be a hard job. The amount of complexity added to the code because of these **nested** statements make their readability and maintainablity really low. And trust me, I've seen worse examples of pieces of code that actually shipped to a real game. As a general rule of thumb, keep your methods with a maximum of one multi-line statement nested inside another multi-line statement. When possible, no nesting or even no multi-line statements at all is desirable.
 
 ```csharp
 // Goal
@@ -331,7 +331,7 @@ for (int i = 0; i < 10; i++)
 }
 
 // Ultimate Goal
-int[] myValues = CalculateValueMatrix(100, 10, 5);
+int[,] myValues = CalculateValueMatrix(100, 10, 5);
 ```
 
 ## Namespaces
