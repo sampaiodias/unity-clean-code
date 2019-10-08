@@ -2,6 +2,15 @@
 
 This repository is dedicated to teach Unity developers of different backgrounds and programming skill levels to create cleaner code, which in most cases is also more maintainable and sometimes even faster! If you have any suggestions or found any errors below, be sure to submit an Issue or a Pull Request.
 
+- [The Basics](#the-basics)
+- [Identation](#identation)
+- [Variables](#variables)
+- [Methods](#methods)
+- [Statements (if, for, etc.)](#statements)
+- [Namespaces](#namespaces)
+- [Advanced Tips and Patterns](#advanced-tips-and-patterns)
+- [References](#references)
+
 ## The Basics
 If you're reading this guide, you probably have a general understanding of what C# is, how to write (at least) some simple scripts in Unity and what not. However, I often see programmers struggle to truly understand the first principles they ever see when creating a new script. Let's take a look at it:
 
@@ -86,7 +95,7 @@ Many programming languages (C# included) have suggested guidelines or rules on h
 
 ## Methods
 
-## Statements (if, switch, for, etc.)
+## Statements
 
 ## Namespaces
 
