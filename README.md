@@ -186,6 +186,64 @@ private bool _isEnemy;
 
 ## Methods
 
+If you think about it, methods are the core part of a software: they **do** something. Because of their nature, when you create a method you should always name them using a verb. Don't forget what you learned above about naming variables: use descriptive, meaningful and readable names. Also remember to name methods using Pascal Case.
+
+```csharp
+// Do
+public void SetInitialScore()
+{
+
+}
+
+// Do NOT
+public void InitialScore()
+{
+
+}
+
+public void setInitialScore()
+{
+
+}
+
+public void SetInitScr()
+{
+
+}
+```
+
+A key feature of methods are parameters. When creating them, use Camel Case and avoid prefixes.
+
+``` csharp
+// Do
+public bool IsNewHighScore(int currentScore) 
+{
+
+}
+
+// Do NOT
+public bool IsNewHighScore(int CurrentScore) 
+{
+
+}
+
+public bool IsNewHighScore(int _currentScore) 
+{
+
+}
+```
+
+Keep the structure of your methods clear with a low amount of information inside it. If your method contains more than 10 lines of code, it is probably a good candidate to be split into two or more methods. And finally, returning to the identation topic, follow the structure below for methods:
+
+```csharp
+public void DoSomething()
+{ // Braces on a new line, starting at the same position of the method declaration.
+	// Method content is a 'Tab' to the right after the braces.
+	string somethingCool = "Cool";
+	DoSomethingElse(somethingCool);
+}
+```
+
 ## Statements
 
 ## Namespaces
