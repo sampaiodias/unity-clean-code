@@ -4,6 +4,8 @@ This repository is dedicated to teach Unity developers of different backgrounds 
 
 This guide will not cover everything there is to learn about clean code for Unity, but only the most important bits in a concise manner. If you want to learn more, I personally suggest reading the [C# programming guide](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/) when in doubt about a specific C# feature, and/or the book "*Clean Code: A Handbook of Agile Software Craftsmanship*" by Robert C. Martin for a broader understanding of the topic.
 
+*Disclaimer: One of the most covered topics in this guide is naming conventions for C#. Keep in mind, however, that naming conventions are often tweaked **on purpose** by organizations for various reasons (Unity and Microsoft included). If you have a good reason to not follow them, do it! Just remember that if a project is using a different style convention, use it on the entire project.*
+
 - [The Basics](#the-basics)
 - [Identation](#identation)
 - [Variables](#variables)
@@ -128,7 +130,7 @@ public int getMovementSpeed;
 - Use the correct "casing" for the kind of variable
 ```csharp
 public int movementSpeed; // Public variable, Camel Case
-private int _movementSpeed; // Public variable, Camel Case with optional '_' at the start
+private int _movementSpeed; // Private variable, Camel Case with optional '_' at the start
 public int Movement Speed { get; set; } // Property, Pascal Case
 private const int MovementSpeed = 10; // Constant, Pascal Case
 ```
@@ -291,7 +293,7 @@ string logMessageForPlayersInformation =
 Debug.Log(logMessageForPlayersInformation);
 ```
 
-The complexity actually steps in when it comes to multi-line statements. When you decide to create blocks of code inside of another block, your script will face a problem similar to the issue presented above. Take a look a this example:
+The complexity actually steps in when it comes to multi-line statements. When you decide to create blocks of code inside of another block, your script will face a problem similar to the issue presented above. Take a look at this example:
 
 ```csharp
 var someValue = 100;
@@ -335,6 +337,33 @@ int[,] myValues = CalculateValueMatrix(100, 10, 5);
 ```
 
 ## Namespaces
+
+Maybe one of the most useful features of C#, namespaces are (in short) a way to better organize your scripts. Unfortunately, namespaces was also one the most underused C# features by Unity developers for quite some time (maybe because of Unity's very own scripting documentation not showing it), but that's something I'm personally seeing some changes within the community. Namespaces are not only useful, they are powerful, but only when you properly use them. And the most important part about it is... naming them!
+
+Before we go to what you should or shouldn't do with namespaces, take a look at this familiar piece of code:
+
+```csharp
+using UnityEngine;
+using System.Collections;
+```
+
+Every new MonoBehaviour is *using* these two namespaces: UnityEngine and System.Collections. The first one is provided by Unity and contains a lot of scripts, like the MonoBehaviour class. The second one is provided by Microsoft and and also contains many interfaces and classes that define various collections of objects, such as lists and dictionaries. One important part of namespaces is that you can create namespaces inside another namespace. For example, Collections is actually nested inside of the System namespace.
+
+Now that these concepts are behind us, let's take a look at how to create them and how to name them!
+
+```csharp
+using System;
+
+namespace Company.Product.Feature
+{
+	public class Example
+	{
+	
+	}
+}
+```
+
+After declaring what other namespaces this file is using, we create a namespace and encapsulate all other code inside the scope of this namespace. The naming for it should start with the organization name and then the name of the product (for example: Github.ExampleProduct). All names are in Pascal Case, with dots separating the nested hierarchy. You may or may not continue with the nesting, using now the name of a specific feature of your product (for example: Github.ExampleProduct.Database). All names should be in singular, but consider using plural when it makes the name of the namespace better explain what it contains (like Collections, of System.Collections). Finally, don't use prefixes or other symbols, like underscores.
 
 ## Comments
 
