@@ -1,4 +1,5 @@
 
+
 # Unity Clean Code
 
 This repository is dedicated to teach Unity developers of different backgrounds and programming skill levels to create cleaner code, which in most cases is also more maintainable and sometimes even faster! If you have any suggestions or found any errors below, be sure to submit an Issue or a Pull Request.
@@ -9,6 +10,8 @@ This repository is dedicated to teach Unity developers of different backgrounds 
 - [Methods](#methods)
 - [Statements (if, for, etc.)](#statements)
 - [Namespaces](#namespaces)
+- [Comments](#comments)
+- [Automated Tests](#automated-tests)
 - [Advanced Tips and Patterns](#advanced-tips-and-patterns)
 - [References](#references)
 
@@ -247,6 +250,10 @@ public void DoSomething()
 ## Statements
 
 ## Namespaces
+
+## Comments
+
+## Automated Tests
 
 ## Advanced Tips and Patterns
 
