@@ -1,3 +1,4 @@
+
 # Unity Clean Code
 
 This repository is dedicated to teach Unity developers of different backgrounds and programming skill levels to create cleaner code, which in most cases is also more maintainable and sometimes even faster! If you have any suggestions or found any errors below, be sure to submit an Issue or a Pull Request.
@@ -64,7 +65,7 @@ The script file we created defines a class (an abstraction of an object), that i
 
 Starting at the very top (after public class MyCustomScript), we define what class (if any) our own class inherits from. In this case, it is Unity's MonoBehaviour. This is arguably the most important class in game development for Unity now, as it's what "marks" a class to be a component that can be attached to a GameObject. Inheriting from another class is not just marking it, it is what "enables you to create new classes that reuse, extend, and modify the behaviour that is defined in other classes". The methods Start and Update, for example, is something that Unity will only call during their predefined events if your class *is* a MonoBehaviour, which you will then extend the methods you need with the proper funcionality.
 
-One common mistake to begginers is thinking that everything has to be a MonoBehaviour or inherit from something is. That is very far from the true, and actually a bad practice. For example, if you have a concept or abstraction that only handles data, consider making it a class that doesn't inherit from another class.
+One common mistake to begginers is thinking that everything has to be a MonoBehaviour or inherit from something else. That is very far from the true, and actually a bad practice. For example, if you have a concept or abstraction that only handles data, consider making it a class that doesn't inherit from another class.
 
 ## Identation
 
@@ -89,9 +90,99 @@ Many programming languages (C# included) have suggested guidelines or rules on h
 
 ## Variables
 
+As you probably know, variables (or members, technically speaking) are what stores the data of your application during runtime. Because your game probably has lots of data, having meaningful and readable names for them is vital. We will also talk about serialization of variables here, a topic of special importance in Unity.
+
 ### Naming
 
+This is a tricky topic within the community. While certain languages have very strict naming conventions, C# is a little bit "relaxed" within a few cases, leaving the convention open for the organization to decide. With this in mind, what you will see below is a mix of what is the C# guidelines for naming variables (including fields and properties) and what is very common and/or widely adopted.
+
+- Use meaningful names
+```csharp
+// Do
+public int healthAmount;
+public string teamName;
+// Do NOT
+public int hp;
+public string tName;
+```
+
+- Use readable names
+```csharp
+// Do
+public int movementSpeed;
+// Do NOT
+public int mvmtSpeed;
+```
+
+- Use nouns as names for variables
+```csharp
+// Do
+public int movementSpeed;
+// Do NOT
+public int getMovementSpeed;
+```
+
+- Use the correct "casing" for the kind of variable
+```csharp
+public int movementSpeed; // Public variable, Camel Case
+private int _movementSpeed; // Public variable, Camel Case with optional '_' at the start
+public int Movement Speed { get; set; } // Property, Pascal Case
+private const int MovementSpeed = 10; // Constant, Pascal Case
+```
+
+-  Avoid using abbreviations or single characters (unless it's math-related)
+```csharp
+// Do
+public string groupName;
+// Do NOT
+public int grpName;
+
+// Recommended for math-related scripts, like Vector2
+public int x;
+public int y;
+```
+
+- Explicitly use the 'private' keyword
+```csharp
+// Do
+private bool _isJumping;
+// Do NOT
+bool _isJumping;
+```
+
+- Use the 'var' keyword when the second part of the variable attribution clearly reveals the type. Only for variables declared inside a method or scope (local variable)
+```csharp
+// Do
+var players = new List<Players>();
+// Do NOT
+var players = PlayerManager.GetPlayers();
+```
+
 ### Serialization
+
+When you create a C# script using Unity and let the class inherit from MonoBehaviour, values that are "public" to the engine can be edited using the Inspector window. After doing it and saving the scene, these values are **serialized** (or saved) into the scene file.  As the goal of this is not to say when to use or not use serialized variables, let's focus on *how* you can declare a variable to be serialized:
+
+```csharp
+// Serialized
+public int movementSpeed;
+public int movementSpeed = 10;
+[SerializeField] private int _movementSpeed;
+[SerializeField] private int _movementSpeed = 10;
+
+// NOT Serialized
+private int _movementSpeed;
+private int _movementSpeed = 10;
+public int MovementSpeed { get; set; }
+```
+
+As a side note, attributes like the [SerializeField] can also be placed to the line above the declaration to improve readability, like this:
+
+```csharp
+[SerializeField]
+private int _movementSpeed;
+[SerializeField, AnotherCoolAttribute]
+private bool _isEnemy;
+```
 
 ## Methods
 
