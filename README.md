@@ -4,7 +4,7 @@ This repository is dedicated to teach Unity developers of different backgrounds 
 
 This guide will not cover everything there is to learn about clean code for Unity, but only the most important bits in a concise manner. If you want to learn more, I personally suggest reading the [C# programming guide](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/) when in doubt about a specific C# feature, and/or the book "*Clean Code: A Handbook of Agile Software Craftsmanship*" by Robert C. Martin for a broader understanding of the topic.
 
-*Disclaimer: One of the most covered topics in this guide is naming conventions for C#. Keep in mind, however, that naming conventions are often tweaked **on purpose** by organizations for various reasons (Unity and Microsoft included). If you have a good reason to not follow them, do it! Just remember that if a project is using a different style convention, use it on the entire project.*
+One of the most covered topics in this guide is naming conventions for C#. Keep in mind, however, that naming conventions are often tweaked **on purpose** by organizations for various reasons (Unity and Microsoft included). If you have a good reason to not follow them, do it! Just remember that if a project is using a different style convention, use it on the entire project.
 
 - [The Basics](#the-basics)
 - [Identation](#identation)
@@ -338,7 +338,7 @@ int[,] myValues = CalculateValueMatrix(100, 10, 5);
 
 ## Namespaces
 
-Maybe one of the most useful features of C#, namespaces are (in short) a way to better organize your scripts. Unfortunately, namespaces was also one the most underused C# features by Unity developers for quite some time (maybe because of Unity's very own scripting documentation not showing it), but that's something I'm personally seeing some changes within the community. Namespaces are not only useful, they are powerful, but only when you properly use them. And the most important part about it is... naming them!
+Maybe one of the most useful features of C#, namespaces are (in short) a way to better organize your scripts. Unfortunately, namespaces were also one the most underused C# features by Unity developers for quite some time (maybe because of Unity's very own scripting documentation not showing it properly), but that's something I'm personally seeing some changes within the community. Namespaces are not only useful, they are powerful, but only when you properly use them. And the most important part about it is... naming them!
 
 Before we go to what you should or shouldn't do with namespaces, take a look at this familiar piece of code:
 
@@ -366,6 +366,94 @@ namespace Company.Product.Feature
 After declaring what other namespaces this file is using, we create a namespace and encapsulate all other code inside the scope of this namespace. The naming for it should start with the organization name and then the name of the product (for example: Github.ExampleProduct). All names are in Pascal Case, with dots separating the nested hierarchy. You may or may not continue with the nesting, using now the name of a specific feature of your product (for example: Github.ExampleProduct.Database). All names should be in singular, but consider using plural when it makes the name of the namespace better explain what it contains (like Collections, of System.Collections). Finally, don't use prefixes or other symbols, like underscores.
 
 ## Comments
+
+With the honorable objective of helping humans understand the code, comments are an incredible way of documentating your scripts and improving maintainability. They are easy to use, but also easy to use in excess. To increase the quality of your code, here are the simple guidelines to when you should create a comment:
+
+1) To document a class, method, enum, or struct.
+2) To serve as a header of the file (mainly for a copyright notice).
+3) To explain a statement that is inherently complex or not obvious to understand.
+
+Let's explore each of these three situations, starting with first one. If you type */* (dash symbol) three times on the line above of one of the structures mentioned above, a special comment section will show up.
+
+```csharp
+/// <summary>
+/// 
+/// </summary>
+public class Example
+{
+
+}
+```
+
+This is not a convention to just make your comments pretty or easier to read. This is actually a standard to help automated tools (like your best friend IntelliSense) to parse your comments and generate useful content. Because of this, be sure to use this pattern to document your code.
+
+```csharp
+// Do
+
+/// <summary>
+/// Calculates the total area of a circle.
+/// </summary>
+/// <param name="radius">The radius of the circle</param>
+private float CalculateCircleArea(float radius)
+{
+    return 3.14f * radius * radius;
+}
+
+//Do NOT
+
+// Calculates the total area of a circle, given a certain radius.
+private float CalculateCircleArea(float radius)
+{
+    return 3.14f * radius * radius;
+}
+```
+
+For the second situation there are not many standards, you are free to type int almost any way you need, as long as it starts in the very first line of the document. Here's an example:
+
+```csharp
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Script.cs" company="{Company}">
+//
+// Copyright (C) 2019 {Company}
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the +terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see http://www.gnu.org/licenses/. 
+// </copyright>
+// <summary>
+// {one line to give the program's name and a brief idea of what it does.}
+// 
+// Email: {Email}
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+// Rest of the code goes here
+```
+
+The last situation is where inexperienced programmers "abuse" comments, putting them on a huge number of statements. This is unnecessary, and it actually does more harm than good! Creating comments should be for special occasions, and not the norm. It is hard to say exactly when you should use them, so follow the example below (where the comments are completely useless) so you don't make the same mistakes.
+
+```csharp
+// Do NOT! Once again, this is an example of what you should NOT do!
+
+private void CreateEnemy(GameObject prefab)
+{
+	// The GameObject of the enemy to be instantiated;
+	GameObject enemy;
+	// Creates the enemy in the scene
+	enemy = Instantiate(prefab)
+	
+	enemy.GetComponent<Enemy>().InitiateMovementBehaviour(); // Makes the enemy walk around the world
+}
+```
 
 ## Automated Tests
 
