@@ -336,6 +336,28 @@ for (int i = 0; i < 10; i++)
 int[,] myValues = CalculateValueMatrix(100, 10, 5);
 ```
 
+There is another curious feature of multi-line statements that can produce some weird-looking code. When a multi-line statement only contains one statement inside its scope, you can remove the braces and the compiler will not throw any errors. There are situations where doing this makes your code much cleaner, but sometimes it is the opposite. Below are some examples of how to approach this, but whatever you do, make this choice consistent across your code.
+
+```csharp
+// Do
+
+for (int i = 0; i < 10; i++)
+	DoSomething();
+	
+if (_isJumping == false) return;
+
+// Avoid
+
+if (_isJumping == false) DoSomething();
+
+// Do NOT
+
+// Nesting multi-line statements without braces
+for (int i = 0; i < 10; i++)
+	for (int j = 0; j < 10; j++)
+		DoSomething();
+```
+
 ## Namespaces
 
 Maybe one of the most useful features of C#, namespaces are (in short) a way to better organize your scripts. Unfortunately, namespaces were also one the most underused C# features by Unity developers for quite some time (maybe because of Unity's very own scripting documentation not showing it properly), but that's something I'm personally seeing some changes within the community. Namespaces are not only useful, they are powerful, but only when you properly use them. And the most important part about it is... naming them!
@@ -408,7 +430,7 @@ private float CalculateCircleArea(float radius)
 }
 ```
 
-For the second situation there are not many standards, you are free to type int almost any way you need, as long as it starts in the very first line of the document. Here's an example:
+For the second situation there are not many standards, you are free to type in almost any way you need, as long as it starts in the very first line of the document. Here's an example:
 
 ```csharp
 // --------------------------------------------------------------------------------------------------------------------
