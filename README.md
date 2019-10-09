@@ -21,8 +21,9 @@ One of the most covered topics in this guide is naming conventions for C#. Keep 
 If you're reading this guide, you probably have a general understanding of what C# is, how to write (at least) some simple scripts in Unity and what not. However, I often see programmers struggle to truly understand the first principles they ever see when creating a new script. Let's take a look at it:
 
 ```csharp
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class MyCustomScript : MonoBehaviour {
 
@@ -41,8 +42,9 @@ public class MyCustomScript : MonoBehaviour {
 The code above is the basic template of a new C# script in Unity. We can divide it in a few portions.
 
 ```csharp
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 ```
 
 The first lines of a script are dedicated to "importing" the necessary code libraries to make our code work. Think of it as dependencies: you can't use a feature of the UnityEngine library if you don't explicitly declare you are *using* them. Make sure you leave them at the very first lines of your script.
@@ -68,7 +70,7 @@ The script file we created defines a class (an abstraction of an object), that i
 }
 ```
 
-Starting at the very top (after public class MyCustomScript), we define what class (if any) our own class inherits from. In this case, it is Unity's MonoBehaviour. This is arguably the most important class in game development for Unity now, as it's what "marks" a class to be a component that can be attached to a GameObject. Inheriting from another class is not just marking it, it is what "enables you to create new classes that reuse, extend, and modify the behaviour that is defined in other classes". The methods Start and Update, for example, is something that Unity will only call during their predefined events if your class *is* a MonoBehaviour, which you will then extend the methods you need with the proper funcionality.
+Starting at the top (after public class MyCustomScript), we define what class (if any) our own class inherits from. In this case, it is Unity's MonoBehaviour. This is arguably the most important class in game development for Unity now, as it's what "marks" a class to be a component that can be attached to a GameObject. Inheriting from another class is not just marking it, it is what "enables you to create new classes that reuse, extend, and modify the behaviour that is defined in other classes". The methods Start and Update, for example, is something that Unity will only call during their predefined events if your class *is* a MonoBehaviour, which you will then extend the methods you need with the proper funcionality.
 
 One common mistake to begginers is thinking that everything has to be a MonoBehaviour or inherit from something else. That is very far from the true, and actually a bad practice. For example, if you have a concept or abstraction that only handles data, consider making it a class that doesn't inherit from another class.
 
@@ -79,7 +81,8 @@ At first glance, identation is a simple topic: managing *spaces* inside your cod
 ```csharp
 // The code below is an example of *bad* identation.
 
-using UnityEngine;   using System.Collections;
+using System.Collections; using System.Collections.Generic;
+using UnityEngine;
 public class MyCustomScript    :MonoBehaviour{
 //Use this for initialization
 void Start() {
@@ -365,11 +368,12 @@ Maybe one of the most useful features of C#, namespaces are (in short) a way to 
 Before we go to what you should or shouldn't do with namespaces, take a look at this familiar piece of code:
 
 ```csharp
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 ```
 
-Every new MonoBehaviour is *using* these two namespaces: UnityEngine and System.Collections. The first one is provided by Unity and contains a lot of scripts, like the MonoBehaviour class. The second one is provided by Microsoft and and also contains many interfaces and classes that define various collections of objects, such as lists and dictionaries. One important part of namespaces is that you can create namespaces inside another namespace. For example, Collections is actually nested inside of the System namespace.
+Every new MonoBehaviour is *using* theses namespaces: UnityEngine, System.Collections and System.Collections.Generic. The UnityEngine namespace is provided by Unity and contains a lot of scripts, like the MonoBehaviour class. The other ones are provided by Microsoft and and also contain many classes and abstractions that define various collections of objects, such as lists and dictionaries. One important part of namespaces is that you can create namespaces inside another namespace. For example, Collections is actually nested inside of the System namespace.
 
 Now that these concepts are behind us, let's take a look at how to create them and how to name them!
 
@@ -468,7 +472,7 @@ The last situation is where inexperienced programmers "abuse" comments, putting 
 
 private void CreateEnemy(GameObject prefab)
 {
-	// The GameObject of the enemy to be instantiated;
+	// The GameObject of the enemy to be instantiated
 	GameObject enemy;
 	// Creates the enemy in the scene
 	enemy = Instantiate(prefab)
